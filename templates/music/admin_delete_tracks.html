@@ -1,0 +1,73 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media }}
+<script src="{% static 'admin/js/cancel.js' %}" async></script>
+<style>
+  #del-confirm {
+    font-size: 1.5em;
+    text-align: center;
+    border: groove 5px var(--border-color);
+    padding: 3em;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 1em auto;
+  }
+  #del-confirm h3 {
+    font-size: 1.7em;
+    border-bottom: solid var(--border-color) 2px;
+    padding: 0.2em;
+  }
+  #del-confirm input {
+    font-size: inherit;
+    background-color: green;
+  }
+  #del-confirm a {
+    font-size: inherit;
+    padding: 15px;
+  }
+  #reminder {
+    font-size: 0.7em;
+    font-style: italic;
+  }
+  #reminder .list {
+    height: 10em;
+    overflow-y: auto;
+  }
+</style>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; Delete Confirm
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="del-confirm">
+  <h3>Are you sure you want to delete?</h3>
+  <div id="reminder">
+  By confirming this opration, the following tracks will be 
+  affected (Total Number: {{num}}):
+  <div class="list">
+    <ul>
+      {% for obj in objs %}
+      <li>{{obj.artist}} - {{obj.title}} - {{obj.album}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <a href="{% url 'admin:music_track_changelist' %}" class="button cancel-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+/* ==================overall================== */
+section#content div.post-list {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+/* ==================filter pane============== */
+div.filter {
+    width: 12em;
+    min-width: 12em;
+    border: var(--fg-color) solid 2px;
+    border-radius: 15px;
+    position: fixed;
+}
+div.filter-space {width: 12em; min-width: 12em;}
+div.filter h1 {
+    display: flex;
+    justify-content: space-between;
+    font-style: italic;
+    border-bottom: 1px var(--fg-color) solid;
+    padding: 0 1em;
+}
+div.filter a:link,
+div.filter a:visited {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: #64c3f1;
+}
+div.filter a:hover {
+    color: #a9dcf5;
+}
+#filter {
+    padding: 0 1em 1em 1em;
+}
+#filter ul {
+    padding: 0;
+}
+#filter li {
+    list-style: none;
+}
+/* =================posts list================ */
+/* post table */
+div.blogs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 20px;
+    column-gap: 25px;
+    margin-left: 20px;
+    min-height: 10em;
+
+    --post-preview-padding: 5px 15px;
+}
+/* blog entry */
+a.post {
+    border: var(--fg-color) solid 2px;
+    border-radius: 10px;
+}
+a.post > img,
+a.post {
+    width: 470px;
+    background-color: var(--entry-bg-color);
+}
+a.post:link,
+a.post:visited {
+    text-decoration: none;
+    color: var(--fg-color);
+}
+a.post:hover,
+a.post:focus {
+    position: relative;
+    bottom: 3px;
+    left: 3px;
+    box-shadow: -3px 3px 3px 3px var(--entry-bg-shadow);
+}
+/* title section */
+a.post > h4.title {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--post-preview-padding);
+    border-top: var(--fg-color) 1px solid;
+    border-bottom: var(--fg-color) 1px solid;
+    margin: 5px auto;
+    font-size: 1.4em;
+}
+/* body preview */
+a.post > div.body {
+    padding: var(--post-preview-padding);
+}
+a.post > div.info {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--fg-color);
+}
+a.post > div.info > p {
+    line-height: 0.4em;
+    font-size: 0.8em;
+    font-style: italic;
+    padding: var(--post-preview-padding)
+}
+
+/* Paginator */
+div.paginator {
+    text-align: right;
+    font-size: 1.5em;
+}

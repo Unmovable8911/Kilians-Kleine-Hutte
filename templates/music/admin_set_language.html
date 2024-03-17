@@ -1,0 +1,94 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media }}
+<script src="{% static 'admin/js/cancel.js' %}" async></script>
+<style>
+  #ch-lan-confirm {
+    font-size: 1.5em;
+    text-align: center;
+    border: groove 5px var(--border-color);
+    padding: 3em;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 1em auto;
+  }
+  #ch-lan-confirm h3 {
+    font-size: 1.7em;
+    border-bottom: solid var(--border-color) 2px;
+    padding: 0.2em;
+  }
+  #ch-lan-confirm select,
+  #ch-lan-confirm option {
+    font-size: inherit;
+    height: fit-content;
+    margin: 1em;
+    width: 10em;
+  }
+  #ch-lan-confirm input {
+    font-size: inherit;
+    background-color: green;
+  }
+  #ch-lan-confirm a {
+    font-size: inherit;
+    padding: 15px;
+  }
+  #reminder {
+    font-size: 0.7em;
+    font-style: italic;
+  }
+  #reminder .list {
+    height: 10em;
+    overflow-y: auto;
+  }
+</style>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; Set Language
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="ch-lan-confirm">
+  <h3>Select a language to set to</h3>
+  <div id="reminder">
+  By confirming this opration, the following tracks will be 
+  affected (Total Number: {{num}}):
+  <div class="list">
+    <ul>
+      {% for obj in objects %}
+      <li>{{obj.artist}} - {{obj.title}} - {{obj.album}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+  <form method="post" id="select-language">
+    {% csrf_token %}
+    <select name="language">
+      <option value="EN">English</option>
+      <option value="CN">中文</option>
+      <option value="DU">Deutcher</option>
+      <option value="FR">Français</option>
+      <option value="IT">Italiano</option>
+      <option value="SP">Español</option>
+      <option value="RU">Pусский</option>
+      <option value="JP">日本語</option>
+      <option value="KR">한국어</option>
+      <option value="NO">Instrumental</option>
+    </select>
+    <div>
+      <input type="submit" value="Save">
+      <a href="{% url 'admin:music_track_changelist' %}" class="button cancel-link">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

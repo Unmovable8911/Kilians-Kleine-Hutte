@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/favicon.png' %}"
+    />
+    <title>
+      Kilians kleine Hütte {% block title-expand %}{% endblock title-expand %}
+    </title>
+    <link
+      media="screen and (min-device-width: 1280px)"
+      rel="stylesheet"
+      href="{% static 'css/_base.css' %}"
+    />
+    {% block cssrc %}{% endblock cssrc %}
+  </head>
+  <body>
+    <div id="title-flex">
+      <img src="{% static 'images/logo.png' %}" alt="Site logo">
+      <p>
+        Eine bescheidene Hütte im Wald<br />
+        birgt mehr Reichtum als ein Königspalast<br />
+        aber nur Eichhörnchen kennen das Geheimnis<br />
+      </p>
+    </div>
+    <div id="head-nav">
+      <a href="{% url 'home' %}" class="nav-item home">
+        <img src="{% static 'images/nav-pictures/home.png' %}" alt="Blogs icon" />
+        <span>Home</span>
+      </a>
+      <a href="{% url 'post_list' %}" class="nav-item blog">
+        <img src="{% static 'images/nav-pictures/blog.png' %}" alt="Blogs icon" />
+        <span>Blogs</span>
+      </a>
+      <a href="" class="nav-item music">
+        <img src="{% static 'images/nav-pictures/music.png' %}" alt="Blogs icon" />
+        <span>Music</span>
+      </a>
+      <a href="" class="nav-item movie">
+        <img src="{% static 'images/nav-pictures/movie.png' %}" alt="Blogs icon" />
+        <span>Movies</span>
+      </a>
+      <a href="" class="nav-item tv">
+        <img src="{% static 'images/nav-pictures/tv.png' %}" alt="Blogs icon" />
+        <span>TVs</span>
+      </a>
+      <a href="" class="nav-item book">
+        <img src="{% static 'images/nav-pictures/book.png' %}" alt="Blogs icon" />
+        <span>Books</span>
+      </a>
+      <a href="" class="nav-item apps">
+        <img src="{% static 'images/nav-pictures/apps.png' %}" alt="Blogs icon" />
+        <span>Apps</span>
+      </a>
+      <span id="pointless-space"></span>
+      <form method="get" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" placeholder="Search in site" name="query">
+        <input type="image" src="{% static 'images/nav-pictures/search.png' %}">
+      </form>
+    </div>
+    {% block content %}{% endblock content %}
+    <footer>
+      <h2>Contact Me</h2>
+      E-Mail: Kilian.Chen.00@outlook.com
+      <hr>
+      <p id="copyright">&copy;2023 Kilians kleine Hütte</p>
+    </footer>
+    <a class="back-to-top" href="#">
+      <img src="{% static 'images/top.png' %}" alt="back-to-top">
+    </a>
+    {% block extrajs %}{% endblock %}
+    <script src="{% static 'js/_base.js' %}"></script>
+  </body>
+</html>

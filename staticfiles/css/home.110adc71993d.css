@@ -1,0 +1,75 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    justify-content: stretch;
+    justify-items: center;
+    grid-column-gap: 20px;
+    grid-row-gap: 25px;
+}
+.exhibit-section {
+    margin: 2em auto;
+}
+
+/* Introduction */
+#introduction {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+#intro {
+    width: 600px;
+    align-self: center;
+}
+h1 {
+    font-size: 2.7em;
+    text-align: center;
+}
+#intro p {
+    font-size: 1.2em;
+    text-indent: 2em;
+}
+
+/* Recent posts */
+h2 {
+    color: #818181;
+    font-size: 1.5em;
+}
+.grid-item {
+    border: solid #afafaf 2px;
+    border-radius: 10px;
+    padding: 0;
+}
+.grid-item a:link, .grid-item a:visited {
+    text-decoration: none;
+    color: #000;
+}
+.grid-item a:hover, .grid-item a:active {
+    color: #9b7d05
+}   
+.post-cover {
+    width: 414px;
+    height: 200px;
+}
+.post-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 0.5em;
+    margin: 0;
+    padding: 6px 10px;
+}
+.post-abstract {
+    font-size: 1em;
+    line-height: 1em;
+    color: #4d4d4d;
+    margin: 0;
+    padding: 6px 10px;
+}
+.post-publish-date {
+    font-size: 0.7em;
+    text-align: right;
+    color: #303030;
+    margin: 3px;
+    padding: 2px;
+    border-top: solid 2px #b0b0b0;
+}

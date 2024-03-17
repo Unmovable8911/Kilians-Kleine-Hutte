@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block title-expand %}: Share my Ideas - Blogs{% endblock %}
+
+{% block cssrc %}
+<link rel="stylesheet" href="{% static 'css/posts/post_detail.css' %}" />
+{% endblock cssrc %}
+
+{% block content %}
+<section id="content">
+  <h1 class="title">{{post.title}}</h1>
+  <div class="info">
+    <p class="topic">{{post.topic}}</p>
+    <p class="pub-date">{{post.publish_date}}</p>
+  </div>
+  <img src={{post.cover.url}} class="cover">
+  <div class="body">
+    {{post.html_body}}
+  </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/posts/markupPostBody.js' %}"></script>
+<script src="{% static 'js/posts/post_detail.js' %}"></script>
+{% endblock %}

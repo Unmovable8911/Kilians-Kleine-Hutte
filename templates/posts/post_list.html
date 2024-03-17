@@ -1,0 +1,82 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block title-expand %}: Share my Ideas - Blogs{% endblock %}
+
+{% block cssrc %}
+<link rel="stylesheet" href="{% static 'css/posts/post_list.css' %}" />
+{% endblock cssrc %}
+
+{% block content %}
+<section id="content">
+  <div class="filter">
+    <h1>
+      <span>Filter</span>
+      <a href="{% url 'post_list' %}">All</a>
+    </h1> 
+    <form action="{% url 'post_list' %}" method="get" id="filter">
+      <ul>
+      {% for topic in topics %}
+        {% if topic in selected_topics %}
+        <li>
+          <input type="checkbox" value={{topic.pk}} name="topics" checked>
+          <span class="topic-name">{{topic.name}}</span>
+        </li>
+        {% else %}
+        <li>
+          <input type="checkbox" value={{topic.pk}} name="topics">
+          <span class="topic-name">{{topic.name}}</span>
+        </li>
+        {% endif %}
+      {% endfor %}
+      <input type="hidden" value="" name="page">
+      </ul>
+    </form>
+  </div>
+  <div class="post-list">
+    <div class="filter-space"></div>
+    <div class="blogs">
+      {% for post in paged_posts %}
+      <a class="post" href="{% url 'post_detail' post.id %}">
+        <img class="cover" src="{{post.cover.url}}">
+        <h4 class="title">{{post.short}}</h4>
+        <div class="body">
+          {{ post.html_body }}
+        </div>
+        <div class="info">
+          <p class="topic">{{post.topic}}</p>
+          <p class="pub-date">{{post.publish_date}}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="paginator">
+    {% if paged_posts.has_previous %}
+    <button type="button" value="1" name="first">First</button>
+    <button type="button" value="{{paged_posts.previous_page_number}}" name="previous">Previous</button>
+    {% else %}
+    <button type="button" name="first" disabled>First</button>
+    <button type="button" name="previous" disabled>Previous</button>
+    {% endif %}
+
+    <span>
+      {{paged_posts.number}}/{{paged_posts.paginator.num_pages}}
+    </span>
+
+    {% if paged_posts.has_next %}
+    <button type="button" value="{{paged_posts.next_page_number}}" name="next">Next</button>
+    <button type="button" value="{{paged_posts.paginator.num_pages}}" name="last">Last</button>
+    {% else %}
+    <button type="button" name="next" disabled>Next</button>
+    <button type="button" name="last" disabled>Last</button>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/posts/markupPostBody.js' %}"></script>
+<script src="{% static 'js/posts/post_list.js' %}"></script>
+{% endblock %}

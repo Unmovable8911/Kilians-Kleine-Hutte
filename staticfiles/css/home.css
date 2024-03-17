@@ -1,0 +1,80 @@
+/* ===================Introduction=============== */
+#introduction {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+#intro {
+    align-self: center;
+    min-width: 500px;
+    max-width: 1000px;
+}
+#intro > h1 {
+    font-size: 2.7em;
+    text-align: center;
+}
+#intro p {
+    font-size: 1.2em;
+    text-indent: 2em;
+}
+
+h2 {
+    color: var(--head-color);
+    font-size: 1.5em;
+}
+
+/* ==================Recent posts================ */
+.blogs {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    justify-items: center;
+    column-gap: 20px;
+    row-gap: 25px;
+    flex-wrap: wrap;
+}
+a.post {
+    display: block;
+    border: solid #afafaf 2px;
+    border-radius: 10px;
+    padding: 0;
+    background-color: var(--entry-bg-color);
+}
+/* grid link */
+a.post:link,
+a.post:visited {
+    text-decoration: none;
+    color: var(--fg-color);
+}
+a.post:hover,
+a.post:focus {
+    position: relative;
+    bottom: 3px;
+    left: 3px;
+    box-shadow: -3px 3px 3px 3px var(--entry-bg-shadow);
+}
+
+img.post-cover {
+    max-width: 525px;
+    min-width: 400px;
+    height: 300px;
+}
+h3.post-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 6px 10px;
+    width: 505px;
+    height: 2.4em;
+}
+p.post-publish-date {
+    font-size: 0.7em;
+    font-style: italic;
+    text-align: right;
+    vertical-align: text-bottom;
+    color: var(--comment-color);
+    margin: 3px;
+    padding: 2px;
+    border-top: solid 2px #b0b0b0;
+}

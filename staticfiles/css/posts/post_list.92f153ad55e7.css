@@ -1,0 +1,19 @@
+.content {
+  width: 1300px;
+}
+
+#post-list {
+    padding: 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 2;
+    /* grid-template-rows: 3; */
+}
+.post-cover, .post-body {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.post-cover {
+    width: 1300px;
+}
